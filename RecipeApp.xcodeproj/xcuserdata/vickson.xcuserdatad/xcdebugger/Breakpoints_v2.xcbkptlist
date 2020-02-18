@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "0D994FA3-EA56-4B1A-B99C-2EC9DDDE8E69"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1C2C0C85-D343-4D6F-B121-CD80D8373B63"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RecipeApp/MainController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "9"
+            endingLineNumber = "9"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6696FCF7-9FE0-4888-A683-52C44B76F247"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RecipeApp/AddRecipeController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "AddRecipeController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "6696FCF7-9FE0-4888-A683-52C44B76F247 - 62ce830a34829042"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RecipeApp.AddRecipeController.recipeTypePickerView.getter : RecipeApp.PickerView"
+                  moduleName = "RecipeApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vickson/Documents/IOS/RecipeApp/RecipeApp/AddRecipeController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "126">
+               </Location>
+               <Location
+                  uuid = "6696FCF7-9FE0-4888-A683-52C44B76F247 - af92e1473ac7c04e"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RecipeApp.AddRecipeController.recipeTypePickerView.setter : RecipeApp.PickerView"
+                  moduleName = "RecipeApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vickson/Documents/IOS/RecipeApp/RecipeApp/AddRecipeController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "160">
+               </Location>
+               <Location
+                  uuid = "6696FCF7-9FE0-4888-A683-52C44B76F247 - ad049586e93c6c5f"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RecipeApp.AddRecipeController.recipeTypePickerView.modify : RecipeApp.PickerView"
+                  moduleName = "RecipeApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vickson/Documents/IOS/RecipeApp/RecipeApp/AddRecipeController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "18">
+               </Location>
+               <Location
+                  uuid = "6696FCF7-9FE0-4888-A683-52C44B76F247 - 72bdf5536140b047"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RecipeApp.AddRecipeController.recipeTypePickerView.modify : RecipeApp.PickerView with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "RecipeApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vickson/Documents/IOS/RecipeApp/RecipeApp/AddRecipeController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  uuid = "6696FCF7-9FE0-4888-A683-52C44B76F247 - 79ae26db2ce7691e"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RecipeApp.AddRecipeController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; RecipeApp.AddRecipeController"
+                  moduleName = "RecipeApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vickson/Documents/IOS/RecipeApp/RecipeApp/AddRecipeController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "688">
+               </Location>
+               <Location
+                  uuid = "6696FCF7-9FE0-4888-A683-52C44B76F247 - 421db0d5e89718c2"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RecipeApp.AddRecipeController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;RecipeApp.AddRecipeController&gt;"
+                  moduleName = "RecipeApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vickson/Documents/IOS/RecipeApp/RecipeApp/AddRecipeController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "619">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

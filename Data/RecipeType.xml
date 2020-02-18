@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<RecipeType>
+    <type id="1">
+        Main Course
+    </type>
+    <type id="2">
+        Breakfast
+    </type>
+    <type id="3">
+        Lunch
+    </type>
+    <type id="4">
+        Dinner
+    </type>
+    <type id="5">
+        Dessert
+    </type>
+</RecipeType>
+
