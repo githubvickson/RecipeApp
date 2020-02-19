@@ -63,6 +63,12 @@ extension UIViewController {
         return 0xFF1744
     }
     
+    func decodeImage64Str(img64Str: String) -> UIImage {
+        let dataDecoded : Data = Data(base64Encoded: img64Str, options: .ignoreUnknownCharacters)!
+        guard let decodedimage = UIImage(data: dataDecoded) else { return UIImage(named: "add")! }
+        return decodedimage
+    }
+    
     func showToast(message : String, font: UIFont) {
 
         let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 125, y: self.view.frame.size.height-100, width: 250, height: 35))
@@ -82,3 +88,9 @@ extension UIViewController {
         })
     }
 }
+
+//extension RecipeDetailViewModelItem {
+//    var rowCount: Int {
+//        return 1
+//    }
+//}

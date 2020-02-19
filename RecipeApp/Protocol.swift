@@ -19,3 +19,12 @@ protocol SQLQuery {
     static var deleteStatement: String { get }
 }
 
+protocol RecipeSqlQuery {
+    static var updateRecipeImgStatement: String {get}
+}
+
+protocol RecipeDetailViewModelItem {
+    var type: RecipeDetailViewModelItemType { get }
+    var rowCount: Int { get }
+    var sectionTitle: String { get }
+}

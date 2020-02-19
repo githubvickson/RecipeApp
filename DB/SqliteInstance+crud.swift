@@ -94,9 +94,9 @@ extension SqliteInstance {
           print("Successfully inserted row.")
     }
     
-    func getAllRecipe(querySql: SQLQuery.Type, recipeType: String) -> [Recipe] {
+    func getAllRecipe(sqlSelectQuery: SQLQuery.Type, recipeType: String) -> [Recipe] {
             var results: [Recipe] = []
-            guard let queryStatement = try? prepareStatement(sql: querySql.selectStatement) else {
+            guard let queryStatement = try? prepareStatement(sql: sqlSelectQuery.selectStatement) else {
             return results
           }
           defer {
@@ -120,14 +120,13 @@ extension SqliteInstance {
             let r2 = String(cString: queryResultImg64Str)
             results.append(Recipe(id: id, recipeName: r1, recipeType: recipeType, img64Str: r2))
           }
-          print("getallrecipe get called")
           return results
     }
     
     //get sql results from Ingredient, Note or Procedure
-    func getAllResults(querySql: SQLQuery.Type, id: Int32) -> [String] {
-        var results: [String] = []
-        guard let queryStatement = try? prepareStatement(sql: querySql.selectStatement) else {
+    func getAllResults(sqlSelectQuery: SQLQuery.Type, id: Int32) -> [Ingredient] {
+        var results: [Ingredient] = []
+        guard let queryStatement = try? prepareStatement(sql: sqlSelectQuery.selectStatement) else {
         return results
       }
       defer {
@@ -138,20 +137,64 @@ extension SqliteInstance {
       }
       
       while (sqlite3_step(queryStatement) == SQLITE_ROW) {
-//        let id = sqlite3_column_int(queryStatement, 0)
-        guard let queryResultID = sqlite3_column_text(queryStatement, 1) else {
-          print("Query result is nil.")
-          return results
-        }
+        let id = sqlite3_column_int(queryStatement, 1)
         guard let queryResultString = sqlite3_column_text(queryStatement, 2) else {
-          print("Query result is nil.")
+          print("queryResultString result is nil.")
           return results
         }
         let r = String(cString: queryResultString)
-        results.append(r)
+        results.append(Ingredient(id: id, ingredient: r))
       }
-        
       return results
+    }
+    
+    func updateRecipeImage(sqlUpdateQuery: RecipeSqlQuery.Type, id: Int32, base64Str: String) throws {
+        let updateStatement = try prepareStatement(sql: sqlUpdateQuery.updateRecipeImgStatement)
+          defer {
+            sqlite3_finalize(updateStatement)
+          }
+            let img64Str: NSString = base64Str as NSString
+          guard
+            sqlite3_bind_int(updateStatement, 2, id) == SQLITE_OK  &&
+            sqlite3_bind_text(updateStatement, 1, img64Str.utf8String, -1, nil) == SQLITE_OK
+            else {
+              throw SQLiteError.Bind(message: errorMessage)
+          }
+          guard sqlite3_step(updateStatement) == SQLITE_DONE else {
+            throw SQLiteError.Step(message: errorMessage)
+          }
+    }
+    
+    func updateSingleItem(sqlUpdateQuery: SQLQuery.Type, id: Int32, value: String) throws {
+        let updateStatement = try prepareStatement(sql: sqlUpdateQuery.updateStatement)
+          defer {
+            sqlite3_finalize(updateStatement)
+          }
+            let v: NSString = value as NSString
+          guard
+            sqlite3_bind_int(updateStatement, 2, id) == SQLITE_OK  &&
+            sqlite3_bind_text(updateStatement, 1, v.utf8String, -1, nil) == SQLITE_OK
+            else {
+              throw SQLiteError.Bind(message: errorMessage)
+          }
+          guard sqlite3_step(updateStatement) == SQLITE_DONE else {
+            throw SQLiteError.Step(message: errorMessage)
+          }
+    }
+    
+    func deleteSingleItem(sqlDeleteQuery: SQLQuery.Type, id: Int32) throws {
+        let deleteStatement = try prepareStatement(sql: sqlDeleteQuery.deleteStatement)
+          defer {
+            sqlite3_finalize(deleteStatement)
+          }
+          guard
+            sqlite3_bind_int(deleteStatement, 1, id) == SQLITE_OK
+            else {
+              throw SQLiteError.Bind(message: errorMessage)
+          }
+          guard sqlite3_step(deleteStatement) == SQLITE_DONE else {
+            throw SQLiteError.Step(message: errorMessage)
+          }
     }
 }
 

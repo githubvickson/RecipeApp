@@ -23,7 +23,7 @@ class MainController: UIViewController, XMLParserDelegate, UIPickerViewDelegate,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+
         recipeFilterPickerRow = 0
         loadNavigationBar()
         loadRecipeTypeFilter()
@@ -31,14 +31,6 @@ class MainController: UIViewController, XMLParserDelegate, UIPickerViewDelegate,
         sqlQueries()
         loadTableView()
         reloadTableViewData()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-//        loadTableView()
-//        recipeTableView.reloadData()
-        
-        print(recipes.count)
     }
     
     func loadTableView() {
@@ -100,26 +92,9 @@ class MainController: UIViewController, XMLParserDelegate, UIPickerViewDelegate,
     
     //a temporarily hack to workaround bug that shows only one result on getAllRecipe upon start up
     func sqlQueries() {
-//                do {
-                    // the id value is ignored in sql
-//                    try mainControllerDB.insertRecipe(recipe: Recipe(id: 0, recipeName: "Test Recipes Test Recipes Test Recipes Test Recipes Test Recipes Test Recipes Test Recipes", recipeType: "Dessert", imgUrl: URL(string: "www.whatever.com") ?? URL(string: "www.wh.com")!))
-//                    try mainControllerDB.insertSingleItem(sqlInsertQuery: Ingredient.self, id: 1, value: "tomato sause")
-//                    try mainControllerDB.insertSingleItem(sqlInsertQuery: Procedure.self, id: 1, value: "Kill the kint")
-//                    try mainControllerDB.insertSingleItem(sqlInsertQuery: Note.self, id: 1, value: "Beware of fire")
-//                    let iResults = mainControllerDB.getAllResults(querySql: Ingredient.self, id: 1)
-//                    for r in iResults {
-//        //                print(r)
-//                    }
-                    
-//                    for r in rResults {
-//                        recipes.append(Recipe(id: r.id, recipeName: r.recipeName, recipeType: r.recipeType, img64Str: r.img64Str))
-//                    }
         let defaultRType = recipeTypes[0].recipeType
-        let rResults = mainControllerDB.getAllRecipe(querySql: Recipe.self, recipeType: defaultRType)
+        let rResults = mainControllerDB.getAllRecipe(sqlSelectQuery: Recipe.self, recipeType: defaultRType)
         recipes = rResults
-//                } catch {
-//                    print("error inserting")
-//                }
     }
         
     @objc func addRecipe(sender: UIBarButtonItem) {
@@ -127,8 +102,6 @@ class MainController: UIViewController, XMLParserDelegate, UIPickerViewDelegate,
         
         let addReceiptViewController = AddRecipeController()
         addReceiptViewController.delegate = self
-//        addReceiptViewController.modalPresentationStyle = .formSheet
-//        present(addReceiptViewController, animated: true, completion: nil)
         navigationController?.pushViewController(addReceiptViewController, animated: true)
     }
     
@@ -151,15 +124,9 @@ class MainController: UIViewController, XMLParserDelegate, UIPickerViewDelegate,
         recipes.removeAll()
         let f = recipeTypes[recipeFilterPickerRow].recipeType
         
-        let rResults = mainControllerDB.getAllRecipe(querySql: Recipe.self, recipeType: f)
+        let rResults = mainControllerDB.getAllRecipe(sqlSelectQuery: Recipe.self, recipeType: f)
         recipes = rResults
         recipeTableView.reloadData()
-    }
-    
-    func decodeImage64Str(img64Str: String) -> UIImage {
-        let dataDecoded : Data = Data(base64Encoded: img64Str, options: .ignoreUnknownCharacters)!
-        guard let decodedimage = UIImage(data: dataDecoded) else { return UIImage(named: "add")! }
-        return decodedimage
     }
     
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
@@ -190,10 +157,12 @@ class MainController: UIViewController, XMLParserDelegate, UIPickerViewDelegate,
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailController = DetailController()
-        detailController.selectedRecipe = recipes[indexPath.row].id
+        detailController.selectedRecipe = recipes[indexPath.row]
         print(recipes[indexPath.row].id)
         detailController.modalPresentationStyle = .fullScreen
-        self.present(detailController, animated: true, completion: nil)
+        detailController.delegate = self
+        navigationController?.pushViewController(detailController, animated: true)
+//        self.present(detailController, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

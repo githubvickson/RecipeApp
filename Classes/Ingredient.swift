@@ -9,15 +9,16 @@
 import Foundation
 
 struct Ingredient {
+    var id : Int32
     var ingredient : String = ""
 }
 
 extension Ingredient: SQLTable, SQLQuery {
-  static var createStatement: String {
-    return """
-        CREATE TABLE IF NOT EXISTS Ingredient (recipeID INTEGER, id INTEGER UNIQUE PRIMARY KEY AUTOINCREMENT, Ingredient TEXT NOT NULL, Constraint fk_ingredient_recipe FOREIGN KEY (recipeID) REFERENCES Recipe (id))
-    """
-  }
+      static var createStatement: String {
+        return """
+            CREATE TABLE IF NOT EXISTS Ingredient (recipeID INTEGER, id INTEGER UNIQUE PRIMARY KEY AUTOINCREMENT, Ingredient TEXT NOT NULL, Constraint fk_ingredient_recipe FOREIGN KEY (recipeID) REFERENCES Recipe (id))
+        """
+      }
     
     static var insertStatement: String {
         return "INSERT INTO Ingredient (recipeID, Ingredient) VALUES (?,?)"
@@ -32,7 +33,7 @@ extension Ingredient: SQLTable, SQLQuery {
     }
     
     static var selectStatement: String {
-        return "SELECT * FROM Ingredient WHERE recipeID = ?"
+        return "SELECT * FROM Ingredient WHERE recipeID = ? Order by id ASC"
     }
 }
 

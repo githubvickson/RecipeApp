@@ -15,7 +15,7 @@ struct Recipe {
     var img64Str : String
 }
 
-extension Recipe: SQLTable, SQLQuery {
+extension Recipe: SQLTable, SQLQuery, RecipeSqlQuery {
     static var createStatement: String {
         return """
         CREATE TABLE IF NOT EXISTS Recipe (id INTEGER UNIQUE PRIMARY KEY AUTOINCREMENT, RecipeName TEXT NOT NULL, RecipeType TEXT NOT NULL, Image64Str TEXT NOT NULL)
@@ -24,7 +24,7 @@ extension Recipe: SQLTable, SQLQuery {
 
     //TODO add order by latest
     static var selectStatement: String {
-        return "SELECT * from Recipe where RecipeType = ?"
+        return "SELECT * from Recipe where RecipeType = ? Order by id DESC"
     }
 
     static var insertStatement: String {
@@ -38,11 +38,9 @@ extension Recipe: SQLTable, SQLQuery {
     static var deleteStatement: String {
         return "Delete from Recipe where id = ?"
     }
+    
+    static var updateRecipeImgStatement: String {
+        return "UPDATE Recipe set Image64Str = ? where id = ?"
+    }
 }
 
-//class Recipe {
-    
-//    init(recipeName : String, type : String, imgUrl : URL) {
-//        recipeName
-//    }
-//}

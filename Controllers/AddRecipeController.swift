@@ -27,12 +27,13 @@ class AddRecipeController : UIViewController, UIImagePickerControllerDelegate, U
         
         recipeTypes = delegate.recipeTypes
         recipeNameTextField = UITextField(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        recipeNameTextField.backgroundColor = .gray
-        recipeNameTextField.placeholder = "name text field"
+        recipeNameTextField.backgroundColor = .white
+        recipeNameTextField.placeholder = "Recipe Name"
+        recipeNameTextField.textAlignment = .center
         recipeNameTextField.delegate = self
         recipeTypeTextField = UITextField(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
-        recipeTypeTextField.backgroundColor = .green
-        recipeTypeTextField.placeholder = "type field"
+        recipeTypeTextField.backgroundColor = .white
+        recipeTypeTextField.placeholder = "Recipe Type"
         recipeTypeTextField.textAlignment = .center
         recipeImageUpload = UIImageView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
         recipeImageUpload.image = UIImage(named: "add")
@@ -68,7 +69,7 @@ class AddRecipeController : UIViewController, UIImagePickerControllerDelegate, U
     }
     
     //reassign delegate' pickerview toolbar button as it was modified when this viewcontroller is loaded
-    func assignDelegatePickerToolbar() {
+    func reAssignDelegatePickerToolbar() {
         delegate.recipeFilterPicker.cancelBtn.target = delegate
         delegate.recipeFilterPicker.cancelBtn.action = #selector(delegate.cancelRecipeTypeFilter(sender:))
         delegate.recipeFilterPicker.doneBtn.target = delegate
@@ -76,7 +77,7 @@ class AddRecipeController : UIViewController, UIImagePickerControllerDelegate, U
     }
     
     @objc func cancelAddRecipe() {
-        assignDelegatePickerToolbar()
+        reAssignDelegatePickerToolbar()
         navigationController?.popViewController(animated: true)
     }
     
@@ -100,7 +101,7 @@ class AddRecipeController : UIViewController, UIImagePickerControllerDelegate, U
         } catch {
             print("error inserting recipe")
         }
-        assignDelegatePickerToolbar()
+        reAssignDelegatePickerToolbar()
         delegate.reloadTableViewData()
         navigationController?.popViewController(animated: true)
     }
